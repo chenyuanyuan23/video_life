@@ -46,7 +46,11 @@ class BackgroundPlayer: NSObject, AVAudioPlayerDelegate {
     }
     
     func sourcePath() ->  String? {
+        #if SWIFT_PACKAGE
+        let bundle = Bundle.module
+        #else
         let bundle = Bundle(for: BackgroundPlayer.self)
+        #endif
         return bundle.path(forResource: "silent", ofType: "mp3")
     }
     
